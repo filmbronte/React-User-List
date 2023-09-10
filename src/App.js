@@ -2,7 +2,7 @@ import { Footer } from "./components/common/Footer";
 import { Header } from "./components/common/Header";
 import './App.css';
 import { Search } from "./components/search/Search";
-import { UserSection } from "./components/user-section/UserSection";
+import { UserList } from "./components/user-list/UserList";
 import { useEffect, useState } from "react";
 
 const baseUrl = 'http://localhost:3005/api';
@@ -20,8 +20,6 @@ function App() {
 
   }, []);
 
-  console.log(users);
-
   return (
     <div>
       {/* <!-- Header component --> */}
@@ -36,13 +34,13 @@ function App() {
           <Search />
 
           {/* <!-- Table component --> */}
-          <UserSection />
+          <UserList users={users} />
 
           {/* <!-- New user button  --> */}
-          <button className="btn-add btn">Add new user</button>
+          {/* <button className="btn-add btn">Add new user</button> */}
 
           {/* <!-- Pagination component  --> */}
-          <div className="pagination position">
+          {/* <div className="pagination position">
             <div className="limits">
               <span>Items per page:</span>
               <select name="limit" className="limit" value="5">
@@ -90,7 +88,7 @@ function App() {
                 </svg>
               </button>
             </div>
-          </div>
+          </div> */}
         </section>
 
         {/* <!-- User details component  --> */}
