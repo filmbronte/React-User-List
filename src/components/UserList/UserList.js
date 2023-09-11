@@ -1,5 +1,5 @@
-import { UserItem } from "./user-item/UserItem";
-import { UserDetails } from "./user-details/UserDetails";
+import { UserItem } from "./UserItem/UserItem";
+import { UserDetails } from "./UserDetails/UserDetails";
 
 export const UserList = ({ users }) => {
     const detailsClickHandler = (id) => {

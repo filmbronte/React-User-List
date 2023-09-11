@@ -1,4 +1,4 @@
-import Section from './section/Section'
+import Section from '../Section/Section'
 
 function Main() {
     return (

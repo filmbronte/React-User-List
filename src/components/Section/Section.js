@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import * as userService from '../../../services/userService'
+import * as userService from '../../services/userService'
 
-import { Search } from "./search/Search";
-import { UserList } from "./user-list/UserList";
+import { Search } from "../Search/Search";
+import { UserList } from "../UserList/UserList";
 
 function Section() {
     const [users, setUsers] = useState([]);
