@@ -15,3 +15,17 @@ export const getOne = async (id) => {
 
     return res.user;
 };
+
+export const create = async (userData) => {
+    const response = await fetch(`${baseUrl}/users`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    });
+
+    const res = await response.json();
+
+    return res.user;
+}

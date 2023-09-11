@@ -1,5 +1,6 @@
 export const UserAdd = ({
-    onAddClose
+    onAddClose,
+    onUserCreate
 }) => {
     return (
         <div className="overlay">
@@ -17,7 +18,7 @@ export const UserAdd = ({
                             </svg>
                         </button>
                     </header>
-                    <form>
+                    <form onSubmit={onUserCreate}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
