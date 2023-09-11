@@ -19,8 +19,6 @@ export const UserList = () => {
     const [users, setUsers] = useState([]);
     const [userAction, setUserAction] = useState({ user: null, action: null });
 
-    const [showEditUser, setShowEditUser] = useState(null);
-
     useEffect(() => {
         userService.getAll()
             .then(users => setUsers(users));
@@ -129,7 +127,21 @@ export const UserList = () => {
 
     const onUserUpdateSubmitHandler = (e, userId) => {
         onUserUpdateSubmit(e, userId);
-        setShowEditUser(null);
+        // setShowEditUser(null);
+        closeHandler();
+    };
+
+    const onUserDelete = async (userId) => {
+        // Delete from server
+        await userService.del(userId);
+
+        // Delete from state
+        setUsers(state => state.filter(x => x._id !== userId));
+    };
+
+    const onDeleteHandler = (id) => {
+        onUserDelete(id);
+
         closeHandler();
     };
 
@@ -150,6 +162,7 @@ export const UserList = () => {
                 {userAction.action == UserActions.Delete &&
                     <UserDelete {...userAction.user}
                         onDeleteClose={closeHandler}
+                        onDelete={onDeleteHandler}
                     />}
                 {userAction.action == UserActions.Add &&
                     <UserAdd {...null}

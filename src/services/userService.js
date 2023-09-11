@@ -44,3 +44,13 @@ export const update = async (userId, userData) => {
 
     return result.user;
 };
+
+export const del = async (userId) => {
+    const response = await fetch(`${baseUrl}/users/${userId}`, {
+        method: 'DELETE',
+    })
+
+    const result = await response.json();
+
+    return result;
+}

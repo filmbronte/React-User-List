@@ -1,7 +1,9 @@
 export const UserDelete = ({
+    _id,
     firstName,
     lastName,
-    onDeleteClose
+    onDeleteClose,
+    onDelete
 }) => {
     return (
         <div className="overlay">
@@ -21,7 +23,7 @@ export const UserDelete = ({
                     </header>
                     <div className="actions">
                         <div id="form-actions">
-                            <button id="action-save" className="btn" type="submit">Delete</button>
+                            <button onClick={() => onDelete(_id)} id="action-save" className="btn" type="submit">Delete</button>
                             <button onClick={onDeleteClose} id="action-cancel" className="btn" type="button">
                                 Cancel
                             </button>
@@ -29,6 +31,6 @@ export const UserDelete = ({
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
