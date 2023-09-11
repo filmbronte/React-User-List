@@ -29,3 +29,18 @@ export const create = async (userData) => {
 
     return res.user;
 }
+
+export const update = async (userId, userData) => {
+
+    const response = await fetch(`${baseUrl}/users/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+    });
+
+    const result = await response.json();
+
+    return result.user;
+};

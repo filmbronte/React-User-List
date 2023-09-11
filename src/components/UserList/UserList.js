@@ -19,6 +19,8 @@ export const UserList = () => {
     const [users, setUsers] = useState([]);
     const [userAction, setUserAction] = useState({ user: null, action: null });
 
+    const [showEditUser, setShowEditUser] = useState(null);
+
     useEffect(() => {
         userService.getAll()
             .then(users => setUsers(users));
@@ -98,6 +100,39 @@ export const UserList = () => {
             })
     }
 
+    const onUserUpdateSubmit = async (e, userId) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const {
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            imageUrl,
+            ...address
+        } = Object.fromEntries(formData);
+
+        const userData = {
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            imageUrl,
+            address
+        }
+
+        const updatedUser = await userService.update(userId, userData);
+
+        setUsers(state => state.map(x => x._id === userId ? updatedUser : x));
+    }
+
+    const onUserUpdateSubmitHandler = (e, userId) => {
+        onUserUpdateSubmit(e, userId);
+        setShowEditUser(null);
+        closeHandler();
+    };
+
     return (
         <>
             <div className="table-wrapper">
@@ -107,8 +142,10 @@ export const UserList = () => {
                         onDetailsClose={closeHandler}
                     />}
                 {userAction.action == UserActions.Edit &&
-                    <UserEdit {...userAction.user}
+                    <UserEdit
+                        user={userAction.user}
                         onEditClose={closeHandler}
+                        onUserCreateSubmit={onUserUpdateSubmitHandler}
                     />}
                 {userAction.action == UserActions.Delete &&
                     <UserDelete {...userAction.user}
