@@ -1,6 +1,11 @@
 import { UserItem } from "./user-item/UserItem";
+import { UserDetails } from "./user-details/UserDetails";
 
 export const UserList = ({ users }) => {
+    const detailsClickHandler = (id) => {
+        console.log('clicked', id)
+    }
+
     return (
         <div className="table-wrapper">
             {/* <!-- Overlap components  -->
@@ -73,6 +78,8 @@ export const UserList = ({ users }) => {
             </div> -->
         <!-- </div> --> */}
 
+            {/* <UserDetails /> */}
+
             <table className="table">
                 <thead>
                     <tr>
@@ -130,7 +137,7 @@ export const UserList = ({ users }) => {
                     {/* <!-- Table row component --> */}
 
                     {users.map(user =>
-                        <UserItem key={user._id} {...user} />
+                        <UserItem key={user._id} {...user} onDetailsClick={detailsClickHandler} />
                     )}
 
 
