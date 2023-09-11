@@ -129,7 +129,11 @@ export const UserList = ({ users }) => {
                 <tbody>
                     {/* <!-- Table row component --> */}
 
-                    {users.map(user => <UserItem key={user._id} {...user} />)}
+                    {users.map(user =>
+                        <tr>
+                            <UserItem key={user._id} {...user} />
+                        </tr>
+                    )}
 
 
                 </tbody>

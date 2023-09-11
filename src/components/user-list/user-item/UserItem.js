@@ -7,10 +7,10 @@ export const UserItem = ({
     createdAt
 }) => {
     return (
-        <tr>
+        <>
             <td>
                 <img src={imageUrl}
-                    alt="Peter's profile" className="image" />
+                    alt={`${firstName}'s profile`} className="image" />
             </td>
             <td>{firstName}</td>
             <td>{lastName}</td>
@@ -46,7 +46,6 @@ export const UserItem = ({
                     </svg>
                 </button>
             </td>
-        </tr>
-
+        </>
     );
 }

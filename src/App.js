@@ -1,27 +1,23 @@
-import { Footer } from "./components/common/Footer";
-import { Header } from "./components/common/Header";
-import './App.css';
-import { Search } from "./components/search/Search";
-import { UserList } from "./components/user-list/UserList";
 import { useEffect, useState } from "react";
 
-const baseUrl = 'http://localhost:3005/api';
+import * as userService from './services/userService'
+
+import { Footer } from "./components/common/Footer";
+import { Header } from "./components/common/Header";
+import { Search } from "./components/search/Search";
+import { UserList } from "./components/user-list/UserList";
+import './App.css';
 
 function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch(baseUrl + '/users')
-      .then(res => res.json())
-      .then(result => {
-        setUsers(result.users);
-      })
-      .catch(err => alert(err));
-
+    userService.getAll()
+      .then(users => setUsers(users));
   }, []);
 
   return (
-    <div>
+    <>
       {/* <!-- Header component --> */}
       <Header />
 
@@ -292,7 +288,7 @@ function App() {
 
       <Footer />
 
-    </div>
+    </>
   );
 }
 
