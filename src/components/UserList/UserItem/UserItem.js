@@ -6,7 +6,9 @@ export const UserItem = ({
     phoneNumber,
     createdAt,
     onDetailsClick,
-    _id
+    _id,
+    onEditClick,
+    onDeleteClick
 }) => {
     return (
         <tr>
@@ -21,7 +23,7 @@ export const UserItem = ({
             <td>{createdAt}</td>
 
             <td className="actions">
-                <button className="btn edit-btn" title="Edit">
+                <button onClick={() => onEditClick(_id)} className="btn edit-btn" title="Edit">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                         className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 532 512">
@@ -30,7 +32,7 @@ export const UserItem = ({
                         </path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                <button onClick={() => onDeleteClick(_id)} className="btn delete-btn" title="Delete">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"
