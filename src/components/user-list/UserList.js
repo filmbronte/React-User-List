@@ -130,9 +130,7 @@ export const UserList = ({ users }) => {
                     {/* <!-- Table row component --> */}
 
                     {users.map(user =>
-                        <tr>
-                            <UserItem key={user._id} {...user} />
-                        </tr>
+                        <UserItem key={user._id} {...user} />
                     )}
 
 
