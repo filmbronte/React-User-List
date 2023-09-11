@@ -1,9 +1,24 @@
+import * as userService from '../../services/userService'
+
 import { UserItem } from "./UserItem/UserItem";
 import { UserDetails } from "./UserDetails/UserDetails";
+import { useState } from "react";
 
-export const UserList = ({ users }) => {
+export const UserList = ({
+    users,
+}) => {
+    const [selectedUser, setSelectedUser] = useState(null);
+
     const detailsClickHandler = (id) => {
         console.log('clicked', id)
+        userService.getOne(id)
+            .then(user => {
+                setSelectedUser(user)
+            })
+    }
+
+    const detailsCloseHandler = () => {
+        setSelectedUser(null);
     }
 
     return (
@@ -78,7 +93,7 @@ export const UserList = ({ users }) => {
             </div> -->
         <!-- </div> --> */}
 
-            {/* <UserDetails /> */}
+            {selectedUser && <UserDetails {...selectedUser} onDetailsClose={detailsCloseHandler} />}
 
             <table className="table">
                 <thead>
