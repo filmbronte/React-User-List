@@ -1,5 +1,6 @@
 export const UserDelete = ({
-    user,
+    firstName,
+    lastName,
     onDeleteClose
 }) => {
     return (
@@ -8,7 +9,7 @@ export const UserDelete = ({
             <div className="modal">
                 <div className="confirm-container">
                     <header className="headers">
-                        <h2>Are you sure you want to delete this account?</h2>
+                        <h2>Are you sure you want to delete {firstName} {lastName}?</h2>
                         <button onClick={onDeleteClose} className="btn close">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                                 className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
