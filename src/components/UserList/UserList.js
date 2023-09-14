@@ -18,6 +18,15 @@ const UserActions = {
 export const UserList = () => {
     const [users, setUsers] = useState([]);
     const [userAction, setUserAction] = useState({ user: null, action: null });
+    const [formValues, setFormValues] = useState({
+        firstName: '',
+        lastName: '',
+    });
+    const [formError, setFormError] = useState({
+        firstName: '',
+        lastName: '',
+    })
+
 
     useEffect(() => {
         userService.getAll()
@@ -145,6 +154,26 @@ export const UserList = () => {
         closeHandler();
     };
 
+    const formChangeHandler = (e) => {
+        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
+    }
+
+    //TODO: fix bug and finish form validation
+    const validateForm = (e) => {
+        const value = e.target.value;
+        const errors = {};
+
+        if (e.target.name === 'firstName' && (value.length < 3 || value.length > 20)) {
+            errors.firstName = 'First name should be between 3 and 20 characters!';
+        }
+
+        if (e.target.name === 'lastName' && (value.length < 3 || value.length > 20)) {
+            errors.lastName = 'Last name should be between 3 and 20 characters!';
+        }
+
+        setFormError(errors);
+    }
+
     return (
         <>
             <div className="table-wrapper">
@@ -168,6 +197,10 @@ export const UserList = () => {
                     <UserAdd {...null}
                         onAddClose={closeHandler}
                         onUserCreate={userCreateHandler}
+                        formValues={formValues}
+                        formChangeHandler={formChangeHandler}
+                        formError={formError}
+                        validateForm={validateForm}
                     />}
 
                 <table className="table">

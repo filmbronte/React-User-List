@@ -1,6 +1,10 @@
 export const UserAdd = ({
     onAddClose,
-    onUserCreate
+    onUserCreate,
+    formValues,
+    formChangeHandler,
+    formError,
+    validateForm,
 }) => {
     return (
         <div className="overlay">
@@ -24,21 +28,30 @@ export const UserAdd = ({
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" />
+                                    <input id="firstName" name="firstName" type="text" value={formValues.firstName} onChange={formChangeHandler} onBlur={validateForm} />
                                 </div>
-                                <p className="form-error">
-                                    First name should be at least 3 characters long!
-                                </p>
+                                {formError.firstName
+                                    ?
+                                    <p className="form-error">
+                                        First name should be at least 3 characters long!
+                                    </p>
+                                    : null
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" />
+                                    <input id="lastName" name="lastName" type="text" value={formValues.lastName} onChange={formChangeHandler} onBlur={validateForm} />
                                 </div>
-                                <p className="form-error">
-                                    Last name should be at least 3 characters long!
-                                </p>
+                                {formError.lastName
+                                    ?
+                                    <p className="form-error">
+                                        Last name should be at least 3 characters long!
+                                    </p>
+                                    :
+                                    null
+                                }
                             </div>
                         </div>
 
